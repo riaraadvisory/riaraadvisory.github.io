@@ -148,19 +148,38 @@
       return;
     }
 
-    // Simulate submission
+    // Submit to Formspree
     const submitBtn = form.querySelector('.form-submit');
     submitBtn.textContent = 'Sending…';
     submitBtn.disabled = true;
 
-    setTimeout(() => {
-      form.style.display = 'none';
-      if (success) {
-        success.style.display = 'block';
-        // Scroll success into view
-        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    fetch(form.action, {
+      method: form.method,
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        form.style.display = 'none';
+        if (success) {
+          success.style.display = 'block';
+          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      } else {
+        submitBtn.textContent = 'Send Message';
+        submitBtn.disabled = false;
+        submitBtn.insertAdjacentHTML('afterend',
+          '<p style="color:#e53e3e;font-size:.85rem;margin-top:12px;">Something went wrong. Please try again or email us directly at riaraadvisory@gmail.com.</p>'
+        );
       }
-    }, 1300);
+    })
+    .catch(() => {
+      submitBtn.textContent = 'Send Message';
+      submitBtn.disabled = false;
+      submitBtn.insertAdjacentHTML('afterend',
+        '<p style="color:#e53e3e;font-size:.85rem;margin-top:12px;">Something went wrong. Please try again or email us directly at riaraadvisory@gmail.com.</p>'
+      );
+    });
   });
 })();
 

@@ -124,33 +124,19 @@
               Tell us about your business and what you are working on. We will take it from there.
             </p>
 
-            <form id="contactForm" novalidate>
+            <form id="contactForm" action="https://formspree.io/f/xkokwelg" method="POST" novalidate>
 
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="firstName">First Name</label>
-                  <input
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    placeholder="Jane"
-                    required
-                    autocomplete="given-name"
-                  />
-                  <span class="form-error-msg">Please enter your first name.</span>
-                </div>
-                <div class="form-group">
-                  <label for="lastName">Last Name</label>
-                  <input
-                    type="text"
-                    id="lastName"
-                    name="lastName"
-                    placeholder="Smith"
-                    required
-                    autocomplete="family-name"
-                  />
-                  <span class="form-error-msg">Please enter your last name.</span>
-                </div>
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Jane Smith"
+                  required
+                  autocomplete="name"
+                />
+                <span class="form-error-msg">Please enter your name.</span>
               </div>
 
               <div class="form-group">
